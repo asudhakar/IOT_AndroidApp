@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  .button{
+
+    border-radius: 8px;
+    background-color: #1f81c3; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+  }
+  .button-green{
+
+    border-radius: 8px;
+    background-color: #42c31f; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+  }
+  </style>
+</head>
+<body style="text-align:center">
+        
+  <h1>Welcome</h1>
+   <table class="table">
+    
+    <tbody>
+      <tr class="success">
+        <td>Mic</td>
+        <td id="mic_value">3</td>
+        
+      </tr>
+      <tr class="danger">
+        <td>Moisture</td>
+        <td id="moisture_value">4</td>
+        
+      </tr>
+     
+    </tbody>
+  </table>
+  <a href="#"><input type="button" class="button servo" value="Insert 1 for servo"></a><br/><br/>
+  <a href="#"><input type="button" class="button mp3" value="Insert 2 for mp3"></a><br/><br/>
+  <a href="#"><input type="button" class="button blower" value="Insert 3 for blower"></a>
+  <script type="text/javascript">
+    
+    setTimeout(function(){
+   window.location.reload(1);
+}, 50000);
+
+
+  $( document ).ready(function() {
+   
+    
+    
+$.ajax({
+    dataType: "json",
+    url: "http://192.168.0.106:8080/icradle/show_mic_moisture.php",
+    }).done(function ( data ) {
+      $("#mic_value").html(data.mic);
+      $("#moisture_value").html(data.moisture);
+    });
+    
+  });
+  $(".servo").click(function(){
+    $.ajax({
+    dataType: "jsonp",
+    url: "http://192.168.0.106:8080/icradle/mobile_app_inserion.php?input=servo",
+    }).done(function ( data ) {
+      
+    });
+  });
+
+  $(".mp3").click(function(){
+   $.ajax({
+    dataType: "jsonp",
+    url: "http://192.168.0.106:8080/icradle/mobile_app_inserion.php?input=mp3",
+    }).done(function ( data ) {
+      
+    });
+  });
+
+  $(".blower").click(function(){
+    $.ajax({
+    dataType: "jsonp",
+    url: "http://192.168.0.106:8080/icradle/mobile_app_inserion.php?input=blower",
+    }).done(function ( data ) {
+      
+    });
+  });
+
+
+ 
+
+
+  
+
+  </script>
+
+
+</body>
+</html>
